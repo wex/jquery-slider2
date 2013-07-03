@@ -24,7 +24,7 @@
         var _timer = false;
         var _last = false;
         var _this = false;
-        
+
         var _cycle = function() {
             clearTimeout(_timer);
 
@@ -39,7 +39,7 @@
             if (!_this.length) {
                 _rewind();
             }
-            
+
             _draw();
 
             if (!$this.hasClass('jquery-slider-paused') && settings.autoplay) {
@@ -69,7 +69,7 @@
             } else {
                 _this.show().css('left', settings.width);
             }
-            
+
             _this.stop(true, true).animate({
                 'left'      :   (settings.direction == 'right' ? '+=' : '-=') + settings.width + 'px'
             }, {
@@ -113,7 +113,7 @@
             if (settings.hoverPause) {
                 $this.bind({
                     'mouseenter': function() {
-                        $this.addClass('jquery-slider-paused')
+                        $this.addClass('jquery-slider-paused');
                         clearTimeout(_timer);
                     },
                     'mouseleave': function() {
@@ -132,6 +132,7 @@
                 _this = $(this).addClass('jquery-slider-element');
                 positionEls.prepend($('<span class="jquery-slider-page"></span>').bind('click', function() {
                     if ($this.hasClass('jquery-slider-sliding')) return;
+                    if (_this.get(0) == $tmp.get(0)) return;
                     _last = _this;
                     _this = $tmp;
                     _draw();
